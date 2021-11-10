@@ -1,13 +1,13 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
-import {Text} from 'react-native';
+import * as React from 'react';
+import {EntryComponent} from './src';
 
-const App = () => {
+function App() {
   return (
     <NavigationContainer>
-      <Text>test</Text>
+      <EntryComponent />
     </NavigationContainer>
   );
-};
+}
 
 export default App;
