@@ -1,21 +1,25 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {Jokes} from '../typing';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
 type Props = {
-  joke: Jokes;
+  children: JSX.Element | JSX.Element[];
+  color: string;
+  height?: number;
 };
-export const CardPage = (props: Props) => {
-  return (
-    <View>
-      <Text>{props.joke.category}</Text>
-      {props.joke.setup && props.joke.delivery && (
-        <>
-          <Text>{props.joke.setup}</Text>
-          <Text>{props.joke.delivery}</Text>
-        </>
-      )}
-      {props.joke.joke && <Text>{props.joke.joke}</Text>}
-    </View>
-  );
+
+export const Card = ({children, color, height}: Props) => {
+  return <View style={styles(color, height).card}>{children}</View>;
 };
+
+interface Style {
+  card: ViewStyle;
+}
+
+const styles = (color: string, height = 200) =>
+  StyleSheet.create<Style>({
+    card: {
+      height,
+      backgroundColor: color,
+      marginVertical: 10,
+    },
+  });

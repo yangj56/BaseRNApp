@@ -7,9 +7,14 @@ import {
   ViewStyle,
 } from 'react-native';
 
-export const Loading = () => {
+type Props = {
+  text: string;
+};
+
+export const Loading = ({text}: Props) => {
   return (
     <View style={styles.loading}>
+      <Text>{text}</Text>
       <ActivityIndicator size="large" color="tomato" />
     </View>
   );
@@ -21,9 +26,6 @@ interface Style {
 
 const styles = StyleSheet.create<Style>({
   loading: {
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(219, 148, 148, 0.8)',

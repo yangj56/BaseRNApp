@@ -37,3 +37,41 @@ export enum JOKES {
   Spooky = 'Spooky',
   Christmas = 'Christmas',
 }
+
+export enum MARKET {
+  BINANCE = 'BINANCE',
+  COINBASE = 'COINBASE',
+  BITTREX = 'BITTREX',
+  HUOBIGLOBAL = 'HUOBIGLOBAL',
+}
+
+export type CoinData = {
+  exchange_id: MARKET;
+  symbol: string;
+  base_asset: string;
+  quote_asset: string;
+  price_unconverted: number;
+  price: number;
+  change_24h: number;
+  spread: number;
+  volume_24h: number;
+  status: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type CoinMarketData = {
+  markets: CoinData[];
+  next: string;
+};
+
+export type CoinExchange = {
+  exchange_id: string;
+  name: string;
+  website: string;
+  volume_24h: number;
+};
+
+export type CoinExchangesData = {
+  exchanges: CoinExchange[];
+};

@@ -1,9 +1,13 @@
-import {useState, useEffect} from 'react';
-import {fetchJokes} from '../api/client';
-import {Jokes, JOKES} from '../typing';
+import {useEffect, useState} from 'react';
+import {fetchExchanges} from '../api/client';
+import {CoinExchangesData} from '../typing';
 
-export const useJoke = (): [Jokes | undefined, boolean, string | undefined] => {
-  const [jokes, setJokes] = useState<Jokes>();
+export const useExchanges = (): [
+  CoinExchangesData | undefined,
+  boolean,
+  string | undefined,
+] => {
+  const [exchanges, setExchanges] = useState<CoinExchangesData>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
 
@@ -11,8 +15,8 @@ export const useJoke = (): [Jokes | undefined, boolean, string | undefined] => {
     let timer: NodeJS.Timeout;
     const fetchAPI = async () => {
       try {
-        const response = await fetchJokes([JOKES.Christmas, JOKES.Dark]);
-        setJokes(response);
+        const response = await fetchExchanges();
+        setExchanges(response);
         timer = setTimeout(() => {
           setLoading(false);
         }, 1000);
@@ -27,5 +31,5 @@ export const useJoke = (): [Jokes | undefined, boolean, string | undefined] => {
     return () => clearTimeout(timer);
   }, []);
 
-  return [jokes, loading, error];
+  return [exchanges, loading, error];
 };
